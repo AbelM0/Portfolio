@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Arial', 'Helvetica Neue', sans-serif;
+  --font-mono: 'SFMono-Regular', 'Consolas', 'Liberation Mono', monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  color-scheme: light;
+  --background: #f7f7f4;
+  --foreground: #191a18;
+  --card: #ffffff;
+  --card-foreground: #191a18;
+  --primary: #e4572e;
+  --primary-foreground: #ffffff;
+  --secondary: #ecece7;
+  --secondary-foreground: #191a18;
+  --muted: #e2e2dc;
+  --muted-foreground: #72736e;
+  --border: #d4d5ce;
+  --input: #d4d5ce;
+  --ring: #e4572e;
+}
+
+* {
+  @apply border-border;
+}
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+body {
+  @apply bg-background text-foreground;
+}
+
+.hero-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--border) 48%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--border) 48%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 72px 72px;
+}
+.hero-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 74% 20%,
+    color-mix(in srgb, var(--primary) 12%, transparent),
+    transparent 24rem
+  );
+  pointer-events: none;
+}
+
+.project-feature {
+  background: #191a18;
+  color: #f7f7f4;
+}
+.project-mark {
+  @apply flex h-20 w-20 items-center justify-center border border-primary font-mono text-2xl text-primary;
+}
+.tag {
+  @apply border border-border px-2 py-1 font-mono text-[10px] uppercase tracking-wide text-muted-foreground;
+}
+
+@media (max-width: 640px) {
+  .project-feature {
+    min-height: 24rem;
+  }
+}
