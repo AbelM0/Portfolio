@@ -1,5 +1,6 @@
 import { ArrowUpRight, GithubLogo } from '@phosphor-icons/react/dist/ssr';
 import Image from 'next/image';
+import { RandomLetterSwapText } from '@/components/ui/random-letter-swap';
 import { projects } from './portfolio-data';
 import { Reveal } from './reveal';
 
@@ -13,9 +14,10 @@ export function ProjectLogSection() {
         <p className="font-mono text-[0.625rem] font-semibold tracking-[0.08em] text-[#B7F34A]">
           $ ls ./selected-work
         </p>
-        <h2 className="mt-5 font-sans text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.88] tracking-[-0.065em] text-[#F0F3EF]">
-          Project log
-        </h2>
+        <RandomLetterSwapText
+          className="mt-5 cursor-default font-sans text-[clamp(3rem,6vw,6rem)] font-semibold leading-[0.88] tracking-[-0.065em] text-[#F0F3EF]"
+          label="Project log"
+        />
         <p className="mt-5 max-w-[38rem] font-sans text-sm leading-relaxed text-[#899087]">
           A working record of systems built across applied AI, public service, and real-time
           collaboration.

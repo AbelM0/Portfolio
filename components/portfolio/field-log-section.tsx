@@ -1,4 +1,5 @@
 import { Reveal } from './reveal';
+import { RandomLetterSwapText } from '@/components/ui/random-letter-swap';
 
 export function FieldLogSection() {
   return (
@@ -9,9 +10,10 @@ export function FieldLogSection() {
       <div className="grid gap-12 lg:grid-cols-[18rem_1fr]">
         <Reveal>
           <p className="font-mono text-xs text-[#B7F34A]">$ git log --career</p>
-          <h2 className="mt-5 font-sans text-5xl font-semibold tracking-[-0.05em] text-[#F0F3EF]">
-            Field log
-          </h2>
+          <RandomLetterSwapText
+            className="mt-5 cursor-default font-sans text-5xl font-semibold tracking-[-0.05em] text-[#F0F3EF]"
+            label="Field log"
+          />
         </Reveal>
         <div className="border-l border-[#394038] pl-6 sm:pl-10">
           <Reveal className="relative pb-16">

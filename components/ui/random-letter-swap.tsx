@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useReducedMotion, type Transition } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type ElementType } from 'react';
 
 const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<>/[]{}';
 
@@ -13,27 +13,28 @@ export type RandomLetterSwapProps = {
   transition?: Transition;
 };
 
+export type RandomLetterSwapTextProps = {
+  label: string;
+  as?: 'h1' | 'h2' | 'h3';
+  className?: string;
+  staggerDuration?: number;
+};
+
 function randomGlyph() {
   return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
 }
 
-export function RandomLetterSwap({
-  label,
-  href = '#',
-  className,
-  staggerDuration = 0.025,
-  transition = { duration: 0.6, type: 'spring' },
-}: RandomLetterSwapProps) {
+function useRandomLetterSwap(label: string, staggerDuration: number) {
   const [characters, setCharacters] = useState(() => label.split(''));
   const timers = useRef<number[]>([]);
   const reduceMotion = useReducedMotion();
 
-  const clearTimers = () => {
+  const clearTimers = useCallback(() => {
     timers.current.forEach((timer) => window.clearTimeout(timer));
     timers.current = [];
-  };
+  }, []);
 
-  const scramble = () => {
+  const scramble = useCallback(() => {
     clearTimers();
     setCharacters(label.split(''));
     if (reduceMotion) return;
@@ -54,12 +55,24 @@ export function RandomLetterSwap({
         timers.current.push(timer);
       }
     });
-  };
+  }, [clearTimers, label, reduceMotion, staggerDuration]);
 
   useEffect(() => {
     setCharacters(label.split(''));
     return clearTimers;
-  }, [label]);
+  }, [clearTimers, label]);
+
+  return { characters, scramble };
+}
+
+export function RandomLetterSwap({
+  label,
+  href = '#',
+  className,
+  staggerDuration = 0.025,
+  transition = { duration: 0.6, type: 'spring' },
+}: RandomLetterSwapProps) {
+  const { characters, scramble } = useRandomLetterSwap(label, staggerDuration);
 
   return (
     <motion.a
@@ -79,5 +92,52 @@ export function RandomLetterSwap({
         ))}
       </span>
     </motion.a>
+  );
+}
+
+export function RandomLetterSwapText({
+  label,
+  as = 'h2',
+  className,
+  staggerDuration = 0.025,
+}: RandomLetterSwapTextProps) {
+  const { characters, scramble } = useRandomLetterSwap(label, staggerDuration);
+  const Tag = as as ElementType;
+  let nextWordStart = 0;
+  const words = label.split(' ').map((word) => {
+    const start = nextWordStart;
+    nextWordStart += word.length + 1;
+    return { start, word };
+  });
+
+  return (
+    <Tag
+      className={`group transition-colors hover:text-[#B7F34A] ${className ?? ''}`}
+      aria-label={label}
+      onMouseEnter={scramble}
+    >
+      <span aria-hidden="true">
+        {words.map(({ start, word }, wordIndex) => (
+          <span className="inline-block whitespace-nowrap" key={`${word}-${wordIndex}`}>
+            {word.split('').map((originalCharacter, indexWithinWord) => {
+              const index = start + indexWithinWord;
+
+              return (
+                <span
+                  className="relative inline-block transition-colors group-hover:text-[#B7F34A]"
+                  key={`${label}-${index}`}
+                >
+                  <span className="invisible">{originalCharacter}</span>
+                  <span className="absolute inset-0 text-center">{characters[index]}</span>
+                </span>
+              );
+            })}
+            {wordIndex < words.length - 1 ? (
+              <span aria-hidden="true">{'\u00A0'}</span>
+            ) : null}
+          </span>
+        ))}
+      </span>
+    </Tag>
   );
 }

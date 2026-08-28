@@ -5,6 +5,7 @@ import {
   PaperPlaneTilt,
   Phone,
 } from '@phosphor-icons/react/dist/ssr';
+import { RandomLetterSwapText } from '@/components/ui/random-letter-swap';
 import { Reveal } from './reveal';
 
 const contactItems = [
@@ -21,9 +22,10 @@ export function ContactSection() {
     >
       <div className="mx-auto w-full max-w-[82rem] px-4 sm:px-6">
         <Reveal>
-          <h2 className="max-w-[15ch] text-balance font-sans text-[clamp(3.25rem,7vw,6rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-[#F0F3EF]">
-            Let&apos;s build something useful.
-          </h2>
+          <RandomLetterSwapText
+            className="max-w-[15ch] cursor-default text-balance font-sans text-[clamp(3.25rem,7vw,6rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-[#F0F3EF]"
+            label="Let's build something useful."
+          />
           <p className="mt-8 max-w-[46rem] font-sans text-lg leading-[1.75] text-[#9CA39A]">
             I&apos;m open to AI and software engineering roles, product collaborations, and
             technically ambitious projects. Email is the best way to reach me.
