@@ -1,22 +1,7 @@
 export const projects = [
   {
     year: '2026',
-    title: 'AI Meeting Intelligence System',
-    type: 'AI Engineering',
-    description:
-      'A meeting workspace that turns long recordings into searchable transcripts, concise summaries, decisions, and accountable action items.',
-    contribution:
-      'Designed the end-to-end workflow across audio ingestion, transcription, post-processing, and structured extraction. Action items include validated owner, due date, and priority fields.',
-    stack: ['Next.js', 'NestJS', 'Deepgram', 'Clerk'],
-    image: '/MeetingInt.png',
-    imageAlt: 'AI Meeting Intelligence System interface preview',
-    githubUrl: 'https://github.com/AbelM0/AI-Meeting-Intelligence-System',
-    liveUrl: 'https://ai-meeting-intelligence-system-web.vercel.app/',
-    privateNote: null,
-  },
-  {
-    year: '2026',
-    title: 'AI Operations Assistant',
+    title: 'Nexus Ops',
     type: 'Applied AI',
     description:
       'A bilingual assistant that helps Ethiopian small businesses understand invoices, receipts, PDFs, and everyday expenses.',
@@ -24,9 +9,24 @@ export const projects = [
       'Built document ingestion, OCR, streaming chat, expense summaries, and grounded retrieval using PostgreSQL and pgvector.',
     stack: ['Next.js', 'Supabase', 'pgvector', 'Vercel AI SDK'],
     image: '/AiOps.png',
-    imageAlt: 'AI Operations Assistant interface preview',
+    imageAlt: 'Nexus Ops interface preview',
     githubUrl: 'https://github.com/AbelM0/ai-operations-assistant',
     liveUrl: 'https://ai-operations-assistant-psi.vercel.app/',
+    privateNote: null,
+  },
+  {
+    year: '2026',
+    title: 'Auralis',
+    type: 'AI Engineering',
+    description:
+      'A meeting workspace that turns long recordings into searchable transcripts, concise summaries, decisions, and accountable action items.',
+    contribution:
+      'Designed the end-to-end workflow across audio ingestion, transcription, post-processing, and structured extraction. Action items include validated owner, due date, and priority fields.',
+    stack: ['Next.js', 'NestJS', 'Deepgram', 'Clerk'],
+    image: '/MeetingInt.png',
+    imageAlt: 'Auralis interface preview',
+    githubUrl: 'https://github.com/AbelM0/AI-Meeting-Intelligence-System',
+    liveUrl: 'https://ai-meeting-intelligence-system-web.vercel.app/',
     privateNote: null,
   },
   {
