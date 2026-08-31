@@ -3,10 +3,8 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Abel Mulat | Applied AI Engineer',
-  description:
-    'Abel Mulat is an AI engineer building production-oriented LLM, speech-to-text, and document intelligence products.',
-  keywords: ['AI Engineer', 'LLM Engineer', 'Full-stack Engineer', 'Abel Mulat'],
+  title: 'Abel Mulat | AI/Software Engineer',
+  keywords: ['AI Engineer', 'Full-stack Engineer', 'Abel Mulat'],
   authors: [{ name: 'Abel Mulat' }],
 };
 
